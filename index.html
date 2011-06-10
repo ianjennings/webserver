@@ -1,25 +1,14 @@
 <html>
 <head>
-<script src="/dnode.js" type="text/javascript"></script>
+<script src="/browserify.js" type="text/javascript"></script>
+
 <script type="text/javascript">
     window.onload = function () {
-      
-      
-      var client = DNode({
-        input : function (event, name, data) {
-          console.log(event, name,  data);
-          //self.emit(event, name, data);
-        }
-      });
 
-      client.connect(self.port, function (remote, conn) {
-        //remote.report(self.name)
-        self.remote = remote;
-        self.conn   = conn;
-        //self.emit('ready');
-        //callback(null, true);
-      });
+      var hookio = require('hook.io');
       
+      console.dir(hookio);
+
     };
 </script>
 </head>
