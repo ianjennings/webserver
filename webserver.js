@@ -10,21 +10,42 @@ webserver.connect({
   host: "localhost"
 });
 
-var browserify = require('browserify');
-
 
 webserver.on('ready', function(){
   
-  var connect = require('connect');
-  var server = connect.createServer();
 
-  server.use(connect.static(__dirname));
-  server.use(browserify({ require : [ 'hook.io', 'dnode' ] }))
+  var http = require('http');
+  var fs = require('fs');
+  var dnode = require('dnode');
 
-  webserver.listen({server: server});
-  server.listen(8080);
-  console.log('http://localhost:8080/');
-  
+  var index = fs.readFileSync(__dirname + '/index.html');
+
+  var server = http.createServer(function (req, res) {
+      if (req.url === '/') {
+          res.writeHead(200, { 'Content-Type' : 'text/html' });
+          res.end(index);
+      }
+      else if (!res.finished) {
+          process.nextTick(function () {
+              if (!res.finished) {
+                  res.setCode = 404;
+                  res.setHeader('content-type', 'text/html');
+                  res.end('not found');
+              }
+          });
+      }
+  });
+
+  dnode(function (client) {
+    this.input = function (event, data) {
+      webserver.emit(event, data);
+    };
+  }).listen(server);
+
+  server.listen(6857);
+  console.log('http://localhost:6857/');
+
+
 });
 
 
