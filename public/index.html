@@ -8,24 +8,31 @@
 
     $(document).ready(function(){
 
-        var client = DNode({
-            input: function(conn, event, data){
-              console.log('whats up server', conn, event, data);
-              $('#status-feed').append('<li>' + JSON.stringify(data) + '</li>');
-              
-            }
-        });
+      var client = DNode({
         
-        client.connect(function (remote) {
-            remote.input('o.message', 'i am browser');
-        });
+        input: function(conn, event, data){
+          console.log('whats up server', conn, event, data);
+          if(data){
+            $('#status-feed').append('<li>' + JSON.stringify(data) + '</li>');
+          }
+        },
+        
+        report: function(message){
+          $('#server-name').html(message.toString());
+        }
+        
+      });
+    
+      client.connect(function (remote) {
+          remote.input('o.message', 'i am browser');
+      });
         
     });
     
 </script>
 </head>
 <body>
-    <h1>hook.io-webserver</h1>
+    <h1 id = "server-name">connecting...</h1>
     
     <ul id="status-feed"></ul>
     

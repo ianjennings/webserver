@@ -1,7 +1,16 @@
 #! /usr/bin/env node
 var Webserver = require('../lib/webserver').Webserver;
 
-var webserver = new Webserver( { name: 'hook.io-webserver', options: { port: 9000 } });
+var webserver = new Webserver( { 
+  name: 'hook.io-webserver', 
+  options: { 
+    port: 9000,
+    basicAuth: {
+      "username":"marak",
+      "password":"asdasd"
+    }
+  }
+});
 
 webserver.on('ready', function(){
   console.log('http web server started on port: ' + webserver.options.port);
