@@ -1,0 +1,12 @@
+#! /usr/bin/env node
+var Webserver = require('../lib/webserver').Webserver;
+
+var webserver = new Webserver( { name: 'webserver', options: { port: 9000 } });
+
+webserver.on('ready', function(){
+  console.log('http web server started on port 9000');
+  
+  
+});
+
+webserver.start();
