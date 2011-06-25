@@ -1,0 +1,23 @@
+{
+  "author": "Marak Squires <marak.squires@gmail.com>",
+  "name": "hook.io-webserver",
+  "description": "a simple hook.io hook that listens for http requests and emits their headers and body to your hook.io cloud ( a post / receive hook )",
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Marak/hook.io-webserver.git"
+  },
+  "bin": {
+     "hookio-webserver": "./bin/webserver"
+   },
+  "main": "./lib/webserver",
+  "engines": {
+    "node": ">= v0.4.7"
+  },
+  "dependencies": {
+    "hook.io" : "0.4.x",
+    "dnode":  "0.6.x",
+    "node-static": "0.5.x"
+  },
+  "devDependencies": {}
+}
