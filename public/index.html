@@ -1,7 +1,9 @@
 <html>
 <head>
 
+<LINK REL="StyleSheet" HREF="./css/styles.css" TYPE="text/css" MEDIA=screen></LINK>
 <script src="/js/jQuery.js" type="text/javascript"></script>
+<script src="/js/feed.js" type="text/javascript"></script>
 <script src="/dnode.js" type="text/javascript"></script>
 
 <script type="text/javascript">
@@ -13,7 +15,7 @@
         input: function(conn, event, data){
           console.log('whats up server', conn, event, data);
           if(data){
-            $('#status-feed').append('<li>' + JSON.stringify(data) + '</li>');
+            renderFeed(event, data);
           }
         },
         
@@ -32,7 +34,7 @@
 </script>
 </head>
 <body>
-    <h1 id = "server-name">connecting...</h1>
-    <ul id="status-feed"></ul>
+    <h1 id ="server-name">connecting...</h1>
+    <ul id ="status-feed"></ul>
 </body>
 </html>

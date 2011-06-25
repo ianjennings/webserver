@@ -1,0 +1,86 @@
+body {
+ font-family: arial;
+}
+
+#server-name {
+  background-color: #CCCCCC;
+  left: 45px;
+  margin-bottom: 0;
+  padding-left: 15px;
+  position: relative;
+  width: 120px;
+}
+
+#status-feed {
+  color: #000000;
+  margin-left: 45px;
+  margin-right: 45px;
+  margin-top: 0;
+  padding: 0;
+}
+
+#status-feed li {
+  color: #000000;
+  list-style: none outside none;
+  padding: 5px;
+  position: relative;
+  
+}
+
+#status-feed li:hover {
+  background-color: #CCC;
+  cursor: pointer;
+}
+
+#status-feed li span{
+  margin: 5px;
+  padding: 5px;
+}
+
+
+.timestamp {
+  font-size: 14px;
+  font-style: italic;
+  min-width: 114px;
+  position: absolute;
+  right: -15px;
+  top: -3px;
+}
+
+.url {
+  font-size: 14px;
+  min-width:30px;
+}
+
+.msg {
+  min-width:200px;
+}
+
+.meta {
+  color: #000;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+}
+
+.active {
+  background-color: #CCC !important;
+}
+
+/* npm / winston logging levels */
+
+.error {
+  background-color: red;
+}
+
+.warn {
+  background-color: yellow;
+}
+
+.info {
+  background-color: green;
+}
+
+.data {
+  background-color: #EEECCC;
+}
