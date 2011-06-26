@@ -13,7 +13,6 @@
       var client = DNode({
         
         input: function(conn, event, data){
-          console.log('whats up server', conn, event, data);
           if(data){
             renderFeed(event, data);
           }

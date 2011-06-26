@@ -1,10 +1,18 @@
+$(document).ready(function(){
+
+  $('#status-feed li').live('click', function(){
+    //$('#status-feed li').removeClass('active');
+    $(this).addClass('active');
+  });
+
+});
+
 function renderFeed(event, data) {
   
   var li = '';
-  console.log('event ', event);
-  console.log('incoming data ', data);
+
   switch(event) {
-    
+
     case 'o.log':
       li = renderLog(data);
     break;
@@ -15,31 +23,47 @@ function renderFeed(event, data) {
 
     default:
     break;
-    
+
   }
-  
-  console.log(li);
-  
-  if ($('#status-feed li').length >= 12) {
-    $('#status-feed li').last().remove();
-  }
-  
+
   var levelClass = (data.level || 'info');
-  
-  $('#status-feed').prepend('<li class = "' + levelClass + '">' + li + '</li>');
-  
-  $('#status-feed li').first().click(function(){
-    $('#status-feed li').removeClass('active');
-    $(this).addClass('active');
-    console.log('got clicky');
-  });
-  
+
+  customPrepend('#status-feed', '<li class = "' + levelClass + '">' + li + '</li>');
+
 };
 
 
+//
+//  customPrepend is used instead of $.append(),
+//  so we can keep .active elements 'fixed' in position,
+//  while other elements "scroll past"
+//
+function customPrepend(ul, li) {
+  
+  if (!$('li', ul).length) {
+    $(ul).prepend(li);
+    return;
+  }
+  
+  if ($('li', ul).length >= 25) {
+    $('#status-feed li').last().remove();
+  }
+
+  $(ul).prepend(li);
+
+  var last;
+  // Iterate through every li element, pushing it down, unless its active
+  $('li', ul).each(function(i,e){
+    if($(e).hasClass('active')){
+      $('li:eq(' + (i-1) + ')').before('<li class="active">' + $(e).html() + '</li>');
+      $(e).remove();
+    }
+  });
+  
+}
+
 function renderRequest(request) {
   
-  console.log('request ', request);
   var str = '';
   
   var date = new Date();
@@ -59,7 +83,6 @@ function renderRequest(request) {
 }
 
 function renderLog(logEvent) {
-  console.log('log ', logEvent);
 
   var str = '';
   try {
