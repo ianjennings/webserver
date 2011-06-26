@@ -1,7 +1,7 @@
 {
   "author": "Marak Squires <marak.squires@gmail.com>",
   "name": "hook.io-webserver",
-  "description": "a simple hook.io hook that listens for http requests and emits their headers and body to your hook.io cloud ( a post / receive hook )",
+  "description": "basic hook.io enabled static webserver with socket.io / dnode browser websocket gateway",
   "version": "0.1.0",
   "repository": {
     "type": "git",
