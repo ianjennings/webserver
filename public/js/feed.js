@@ -2,7 +2,12 @@ $(document).ready(function(){
 
   $('#status-feed li').live('click', function(){
     //$('#status-feed li').removeClass('active');
-    $(this).addClass('active');
+    if ($(this).hasClass('active')){
+      $(this).removeClass('active');
+    }
+    else {
+      $(this).addClass('active');
+    }
   });
 
 });
@@ -55,7 +60,8 @@ function customPrepend(ul, li) {
   // Iterate through every li element, pushing it down, unless its active
   $('li', ul).each(function(i,e){
     if($(e).hasClass('active')){
-      $('li:eq(' + (i-1) + ')').before('<li class="active">' + $(e).html() + '</li>');
+      // TODO: use .clone() instead
+      $('li:eq(' + (i-1) + ')').before('<li class="' + $(e).attr('class') + '">' + $(e).html() + '</li>');
       $(e).remove();
     }
   });

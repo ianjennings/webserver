@@ -28,9 +28,10 @@ body {
 }
 
 #status-feed li:hover {
-  background-color: #CCC;
+  background-color: #FFF;
   cursor: pointer;
-  border-style: outset;
+  border-style: solid !important;
+  border-width: 1px;
 }
 
 #status-feed li span{
@@ -39,10 +40,10 @@ body {
 }
 
 #status-feed li.active {
-  background-color: #CCC !important;
-  border-style: outset;
+  background-color: #FFF !important;
+  border-style: solid !important;
+  border-width: 1px;
 }
-
 
 .timestamp {
   font-size: 14px;
@@ -73,17 +74,17 @@ body {
 /* npm / winston logging levels */
 
 .error {
-  background-color: red;
+  background-color: #FFD2CC;
 }
 
 .warn {
-  background-color: yellow;
+  background-color: #F7F2B8;
 }
 
 .info {
-  background-color: green;
+  background-color: #D1FBD7;
 }
 
 .data {
-  background-color: #EEECCC;
+  background-color: #ADF2F9;
 }
