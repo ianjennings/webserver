@@ -1,14 +1,35 @@
 body {
  font-family: arial;
+ padding: 20px;
+}
+
+ul {
+  padding:0px;
+  margin: 0px;
+}
+
+li {
+  padding:0px;
+  margin: 0px;
+  list-style: none;
+  
+}
+
+h1 {
+  padding: 0px;
+  margin: 0px;
+  font-size: 24px;
+}
+
+.wrap {
+  position:relative;
 }
 
 #server-name {
   background-color: #CCCCCC;
-  left: 45px;
-  margin-bottom: 0;
-  padding-left: 15px;
-  position: relative;
   width: 120px;
+  text-align:center;
+  
 }
 
 #status-feed {
@@ -45,6 +66,31 @@ body {
   border-width: 1px;
 }
 
+#pinger {
+  width: 750px;
+}
+
+#pinger li {
+  position: relative;
+}
+
+
+.swatch {
+  background-color: #000;
+  width: 10px;
+  height: 50px;
+  float: left;
+  margin-right:5px;
+}
+
+.status {
+  background-color: #000;
+  width: 228px;
+  height: 50px;
+  bottom: 10px;
+  position: absolute;
+}
+
 .timestamp {
   font-size: 14px;
   font-style: italic;
@@ -59,6 +105,10 @@ body {
   min-width:30px;
 }
 
+.datetime {
+  text-decoration:italic;
+}
+
 .msg {
   min-width:200px;
 }
@@ -70,19 +120,32 @@ body {
   bottom: 0px;
 }
 
+.site {
+  display:none;
+  list-style: none outside none;
+  padding: 10px;
+  cursor: pointer;
+  width: 228px;
+  min-height: 200px;
+  float: left;
+  border-style:solid;
+  border-width:1px;
+  font-size:14px;
+  text-align:left;
+}
 
 /* npm / winston logging levels */
 
 .error {
-  background-color: #FFD2CC;
+  background-color: #FF0000;
 }
 
 .warn {
-  background-color: #F7F2B8;
+  background-color: #EAE179;
 }
 
 .info {
-  background-color: #D1FBD7;
+  background-color: #00FF00;
 }
 
 .data {
