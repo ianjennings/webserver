@@ -52,10 +52,11 @@ function renderPinger(source, data) {
 function inspectResponse(data){
   
   
-  var statusClass = 'info';
+  var statusClass = 'info', statusMsg = "ONLINE";
   
   if(data.err){
     statusClass = 'error';
+    statusMsg   = "ERROR";
   }
   
   
@@ -88,6 +89,7 @@ function inspectResponse(data){
       $('#' + slug(data.name), '#pinger').data('statusClass', statusClass);
       
       $('.status', '#' + slug(data.name)).addClass(statusClass);
+      $('.status', '#' + slug(data.name)).text(statusMsg);
       $('.swatch', '#' + slug(data.name)).css('background-color', 'rgb(' + chartColor + ')');
       
       $('#' + slug(data.name)).fadeIn();
@@ -97,6 +99,8 @@ function inspectResponse(data){
         $('#' + slug(data.name)).html(renderPing(data));
         
         $('.status', '#' + slug(data.name)).addClass(statusClass);
+        $('.status', '#' + slug(data.name)).text(statusMsg);
+        
         $('.swatch', '#' + slug(data.name)).css('background-color', 'rgb(' + $('#' + slug(data.name), '#pinger').data('chartColor') + ')');
         
         
@@ -124,19 +128,23 @@ function renderPing(data) {
   
   var date = new Date();
   
-  var dateStr = months[date.getMonth()] + ' ' + date.getDate() + ' ' + date.getHours() + ':' + date.getMinutes() + ':'+ date.getSeconds();
+  var dateStr = date.getHours() + ':' + date.getMinutes() + ':'+ date.getSeconds();
   str += '<div class="swatch"></div>';
   str += '<h1>';
   str += data.name;
-  str += '</h1><a href = "'+data.url+'">' + data.url +'</a><br/><br/>';
+  str += '</h1>'
+  str += '<a href = "'+data.url+'">' + data.url +'</a>';
 
-  str += '<ul>';
+  str += '<ul class="details">';
 //  str += '<li> Pings: ' + data.attempts + '</li>';
 //  str += '<li> Pongs: ' + data.pongs + '</li>';
 //  str += '<li>Uptime: ' + '10 hours' + '</li>';
 
-  str += '<li>Ping: ' + data.requestTime + 'ms</li>';
-  str += '<li><span class="datetime">' + dateStr + '</span></li>';
+  str += '<li class="ping"><span class="ping">' + data.requestTime + 'ms</span></li>';
+  str += '<li class="datetime">Last activity: <span class="datetime">' + dateStr + '</span></li>';
+
+
+  /*
   
   if(data.err){
     str += '<li>' + data.err.message + '</li>';
@@ -145,8 +153,8 @@ function renderPing(data) {
   if(data.statusCode){
     str += '<li>Response Code: ' + data.statusCode + '</li>';
   }
+  */
 
-  
   str += '</ul>';
 
   str += '<div class="status"></div>';
