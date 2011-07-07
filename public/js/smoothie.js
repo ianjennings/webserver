@@ -250,7 +250,7 @@ SmoothieChart.prototype.render = function(canvas, time) {
 
   // Draw the axis values on the chart.
   if (!options.labels.disabled) {
-      canvasContext.fillStyle = options.labels.fillStyle;
+      canvasContext.fillStyle = "#000000";
       var maxValueString = maxValue.toFixed(2);
       var minValueString = minValue.toFixed(2);
       canvasContext.fillText(maxValueString + 'ms', dimensions.width - canvasContext.measureText(maxValueString + 'ms').width - 4, 40);

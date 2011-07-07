@@ -1,13 +1,18 @@
 var hookio_pingers = {};
 var hookio_chart_colors = [
-'214, 28, 89',
-'231, 216, 75',
-'27, 135, 152'
+'255, 0, 0',
+'255, 255, 0',
+'0, 0, 255',
+'0, 255, 255',
+'255, 0, 255'
+
+
+
 ];
 
 var chart = new SmoothieChart({
   
-  grid: { fillStyle:'#000000', strokeStyle: '#777777', lineWidth: 1, millisPerLine: 2000, verticalSections: 2 },
+  grid: { fillStyle:'#EEE', strokeStyle: '#CCC', lineWidth: 1, millisPerLine: 2000, verticalSections: 2 },
   millisPerPixel: 50,
   fps: 20,
   minValue: 0
@@ -73,7 +78,7 @@ function inspectResponse(data){
       
       chart.addTimeSeries(hookio_pingers[slug(data.name)].TS, {
         strokeStyle: 'rgba(' + chartColor + ', 1)', 
-        fillStyle: 'rgba(' + chartColor + ', 0.2)', 
+        fillStyle: 'rgba(' + chartColor + ', 0.2)',
         lineWidth: 10 
       });
         
@@ -109,11 +114,7 @@ function inspectResponse(data){
 
     }
 
-
-    
     hookio_pingers[slug(data.name)].TS.append(new Date().getTime(), Number(data.requestTime));
-    
-
 
 };
 
@@ -133,6 +134,11 @@ function renderPing(data) {
   str += '<h1>';
   str += data.name;
   str += '</h1>'
+  
+  data.url = data.url.replace('http://', '');
+  data.url = data.url.replace('www.', '');
+  
+  
   str += '<a href = "'+data.url+'">' + data.url +'</a>';
 
   str += '<ul class="details">';
