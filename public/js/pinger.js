@@ -87,16 +87,25 @@ function inspectResponse(data){
       var li = '<li class= "site" id = "' + slug(data.name) + '">';
       li += renderPing(data);
       li += '</li>';
-      $('#pinger').append(li);
-      
-      
+
+      var first = $('#pinger li:first').data("site") || {};
+
+      first = first.order || 0;
+      if(data.order < first){
+        $('#pinger').prepend(li);
+      }
+      else {
+        $('#pinger').append(li);
+      }
+
       $('#' + slug(data.name), '#pinger').data('chartColor', chartColor);
       $('#' + slug(data.name), '#pinger').data('statusClass', statusClass);
-      
+      $('#' + slug(data.name), '#pinger').data('site', data);
+
       $('.status', '#' + slug(data.name)).addClass(statusClass);
       $('.status', '#' + slug(data.name)).text(statusMsg);
       $('.swatch', '#' + slug(data.name)).css('background-color', 'rgb(' + chartColor + ')');
-      
+
       $('#' + slug(data.name)).fadeIn();
     } else {
 
@@ -135,11 +144,12 @@ function renderPing(data) {
   str += data.name;
   str += '</h1>'
   
+  
   data.url = data.url.replace('http://', '');
   data.url = data.url.replace('www.', '');
   
   
-  str += '<a href = "'+data.url+'">' + data.url +'</a>';
+  str += '<a href = "http://'+data.url+'">' + data.url +'</a>';
 
   str += '<ul class="details">';
 //  str += '<li> Pings: ' + data.attempts + '</li>';
