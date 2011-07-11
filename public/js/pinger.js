@@ -121,7 +121,9 @@ function inspectResponse(data){
 
 function slug(str) {
   var str = str || '';
-  return str.replace(/ /g, '_');
+  str = str.replace(/ /g, '_');
+  str = str.replace(/\./g, '_');
+  return str;
 }
 
 function renderPing(data) {
