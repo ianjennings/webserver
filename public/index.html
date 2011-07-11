@@ -11,12 +11,13 @@
 
 <script type="text/javascript">
 
+    var connected = false, t;
 
     $(document).ready(function(){
 
       var client = DNode({
         
-        input: function(conn, event, data){
+        input: function(source, event, data){
           if(data){
             $('.loading').hide();
             //renderFeed(event, data);
@@ -30,12 +31,32 @@
         
       });
 
-      client.connect(function (remote) {
-          remote.input('o.message', 'i am browser');
-      });
+
+      function connect() {
+
+        client.on('error', function(){
+          console.log('crap');
+        });
+
+        client.connect(function (remote, conn) {
+            clearInterval(t);
+            conn.on('end', function(){
+              //
+              //  Attempt reconnection
+              //
+              t = setInterval(function(){
+                console.log('interval attempting to connect');
+                connect();
+              }, 3000)
+            });
+            remote.input('o.message', 'i am browser');
+        });
+      }
+
+      connect();
 
     });
-    
+
 </script>
 </head>
 <body>
