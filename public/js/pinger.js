@@ -106,20 +106,12 @@ function inspectResponse(data){
       $('.status', '#' + slug(data.name)).text(statusMsg);
       $('.swatch', '#' + slug(data.name)).css('background-color', 'rgb(' + chartColor + ')');
 
-      $('#' + slug(data.name)).fadeIn();
     } else {
 
-      $('#' + slug(data.name)).fadeOut(function(){
-        $('#' + slug(data.name)).html(renderPing(data));
-        
-        $('.status', '#' + slug(data.name)).addClass(statusClass);
-        $('.status', '#' + slug(data.name)).text(statusMsg);
-        
-        $('.swatch', '#' + slug(data.name)).css('background-color', 'rgb(' + $('#' + slug(data.name), '#pinger').data('chartColor') + ')');
-        
-        
-        $('#' + slug(data.name)).fadeIn();
-      });
+      $('#' + slug(data.name)).html(renderPing(data));
+      $('.status', '#' + slug(data.name)).addClass(statusClass);
+      $('.status', '#' + slug(data.name)).text(statusMsg);
+      $('.swatch', '#' + slug(data.name)).css('background-color', 'rgb(' + $('#' + slug(data.name), '#pinger').data('chartColor') + ')');
 
     }
 

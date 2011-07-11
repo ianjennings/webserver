@@ -144,7 +144,6 @@ a {
 }
 
 .site {
-  display:none;
   list-style: none outside none;
   padding: 10px;
   cursor: pointer;
