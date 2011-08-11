@@ -3,65 +3,74 @@
 
 <LINK REL="StyleSheet" HREF="./css/styles.css" TYPE="text/css" MEDIA=screen></LINK>
 <script src="/js/jQuery.js" type="text/javascript"></script>
-<script src="/js/smoothie.js" type="text/javascript"></script>
-<script src="/js/feed.js" type="text/javascript"></script>
-<script src="/js/pinger.js" type="text/javascript"></script>
 
-<script src="/dnode.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/Hook.js"></script>
+<script type="text/javascript" src="/js/feed.js"></script>
+
 
 <script type="text/javascript">
 
-    var connected = false, t;
+    //
+    // TODO: Move this to hook-shim, will create magic Hook namespace
+    //
+    var _Hook = require('/hook.js').Hook;
+    window.Hook = new _Hook();
+    window.Hook.connect();
 
-    $(document).ready(function(){
+    Hook.on('browser::ready', function(){
 
-      var client = DNode({
-        
-        input: function(source, event, data){
-          if(data){
-            $('.loading').hide();
-            //renderFeed(event, data);
-            renderPinger(event, data);
-          }
-        },
-        
-        report: function(message){
-          $('#server-name').html(message.toString());
-        }
-        
+      //
+      // Remark: This will render every match to *::*,
+      // into the real-time feed view
+      //
+      Hook.on('*::*', function(data){
+        renderFeed(this.event, data);
       });
 
+      //
+      //  Remark: This will create a browser alert,
+      //  for every Hook event with name 'alert'
+      //
+      Hook.on('*::alert', function(data){
+        alert(this.event, data);
+      });
 
-      function connect() {
+      //
+      // Remark: Use Hook.anAny to capture all Hook events
+      //
+      Hook.onAny(function(data){
+        //console.log(this.event, data);
+      });
 
-        client.connect(function (remote, conn) {
-            clearInterval(t);
-            conn.on('end', function(){
-              //
-              //  Attempt reconnection
-              //
-              t = setInterval(function(){
-                connect();
-              }, 3000)
-            });
-            remote.input('o.message', 'i am browser');
+      //
+      // Remark: Since we are ready, let's send an
+      // outgoing message
+      //
+      Hook.emit('foobar', 'i am browser!');
+
+      //
+      // Remark: Some people enjoy getting callbacks for messages
+      //
+
+        // TODO : Implement
+        /*
+        Hook.emit('cakeRequest', 'Where is my cake', function(err, cake){
+          console.log('Here is your cake ' + cake);
         });
-      }
-
-      connect();
+        */
 
     });
 
 </script>
+
 </head>
 <body>
   <div align="center" class="wrap">
-    <div align="right" style="width:750px;">
+    <div align="right" style="width:96%;">
       <h1 id ="server-name">loading...</h1>
     </div>
-    <canvas id="chart" width="748" height="200" ><img class="loading" src="./img/loading-clock.gif"></img></canvas>
     <img class="loading" src="./img/loading-clock.gif"></img>
-    <ul id ="pinger"></ul>
+    <ul id ="status-feed"></ul>
   </div>
 </body>
 </html>

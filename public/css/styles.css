@@ -31,7 +31,8 @@ a {
 
 #server-name {
   background-color: #EEE;
-  width: 120px;
+  width: 225px;
+  padding: 10px;
   text-align:center;
   cursor: pointer;
   border-top: solid;
@@ -45,10 +46,10 @@ a {
 
 #status-feed {
   color: #000000;
-  margin-left: 45px;
-  margin-right: 45px;
+  text-align: left;
   margin-top: 0;
   padding: 0;
+  width: 96%;
 }
 
 #status-feed li {

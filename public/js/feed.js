@@ -13,28 +13,7 @@ $(document).ready(function(){
 });
 
 function renderFeed(event, data) {
-  
-  var li = '';
-
-  switch(event) {
-
-    case 'o.log':
-      li = renderLog(data);
-    break;
-
-    case 'o.request':
-      li = renderRequest(data);
-    break;
-
-    default:
-    break;
-
-  }
-
-  var levelClass = (data.level || 'info');
-
-  customPrepend('#status-feed', '<li class = "' + levelClass + '">' + li + '</li>');
-
+  customPrepend('#status-feed', '<li>' + event + '</li>');
 };
 
 
@@ -67,56 +46,3 @@ function customPrepend(ul, li) {
   });
   
 }
-
-function renderRequest(request) {
-  
-  var str = '';
-  
-  var date = new Date();
-  
-  var dateStr = date.getDate() + ' ' + months[date.getMonth()] + ' ' + date.getHours() + ':' + date.getMinutes() + ':'+ date.getSeconds();
-
-  str += '<span class = "url">';
-  str += request.url;
-  str += '</span>';
-
-  str += '<span class = "timestamp">';
-  str += dateStr;
-  str += '</span>';
-
-  return str;
-
-}
-
-function renderLog(logEvent) {
-
-  var str = '';
-  try {
-    str += '<span class = "url">';
-    str +=   logEvent.url;
-    str += '</span>';
-    str += '<span class = "msg">';
-    str +=   logEvent.msg;
-    str += '</span>';
-    str += '<span class = "timestamp">';
-    str +=   logEvent.timestamp;
-    str += '</span>';
-    /*
-    str += '<span class = "meta">';
-    str +=   JSON.stringify(logEvent.meta);
-    str += '</span>';
-    */
-    
-  }
-  catch(err) {
-    str += 'Invalid log event!';
-  }
-
-  return str;
-
-}
-
-var months = ['Jan', 'Feb', 'Mar', 'Apr', 
-              'May', 'Jun', 'Jul', 'Aug', 
-              'Sep', 'Oct', 'Nov', 'Dec'];
-

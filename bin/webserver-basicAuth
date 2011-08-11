@@ -2,13 +2,11 @@
 var Webserver = require('hook.io-webserver').Webserver;
 
 var webserver = new Webserver( { 
-  name: 'hook.io-webserver', 
-  options: { 
-    port: 9000,
-    basicAuth: {
-      "username":"marak",
-      "password":"asdasd"
-    }
+  name: 'hook.io-webserver',
+  port: 9000,
+  basicAuth: {
+    "username":"marak",
+    "password":"asdasd"
   }
 });
 
