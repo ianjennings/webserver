@@ -1,6 +1,6 @@
 # hook.io-webserver
 
-basic hook.io enabled static webserver with socket.io / dnode browser websocket gateway
+a basic Hook.io enabled HTTP server which provides Hook access to the browser
 
 ## Features
 
@@ -33,9 +33,9 @@ In addition to standard cross-browser websockets, hook.io-webserver itself exten
     
 var Webserver = require('hook.io-webserver').Webserver;
 
-var webserver = new Webserver( { name: 'hook.io-webserver', options: { port: 9000 } });
+var webserver = new Webserver( { name: 'hook.io-webserver' });
 
-webserver.on('ready', function(){
+webserver.on('hook::ready', function(){
   console.log('http web server started on port: ' + webserver.options.port);
 });
 
