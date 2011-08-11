@@ -2,7 +2,7 @@
   "author": "Marak Squires <marak.squires@gmail.com>",
   "name": "hook.io-webserver",
   "description": "basic hook.io enabled static webserver with socket.io / dnode browser websocket gateway",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "repository": {
     "type": "git",
     "url": "git://github.com/Marak/hook.io-webserver.git"
@@ -15,7 +15,7 @@
     "node": ">= v0.4.7"
   },
   "dependencies": {
-    "hook.io" : "0.4.x",
+    "hook.io" : "0.6.x",
     "dnode":  "0.6.x",
     "node-static": "0.5.x"
   },

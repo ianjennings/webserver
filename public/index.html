@@ -13,9 +13,9 @@
     //
     // TODO: Move this to hook-shim, will create magic Hook namespace
     //
-    var _Hook = require('/hook.js').Hook;
-    window.Hook = new _Hook();
-    window.Hook.connect();
+    var Hook = require('/hook.js').Hook;
+    Hook = new Hook();
+    Hook.connect();
 
     Hook.on('browser::ready', function(){
 
