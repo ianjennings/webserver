@@ -1,6 +1,6 @@
 # hook.io-webserver
 
-a basic Hook.io enabled HTTP server which provides Hook access to the browser
+a basic hook.io enabled webserver with socket.io browser bridge
 
 ## Features
 

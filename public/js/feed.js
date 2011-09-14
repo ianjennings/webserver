@@ -13,7 +13,7 @@ $(document).ready(function(){
 });
 
 function renderFeed(event, data) {
-  customPrepend('#status-feed', '<li>' + event + '</li>');
+  customPrepend('#status-feed', '<li>' + event + '<i>' + JSON.stringify(data) + '</i></li>');
 };
 
 
