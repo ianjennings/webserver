@@ -1,17 +1,24 @@
 #! /usr/bin/env node
-var Webserver = require('hook.io-webserver').Webserver;
+var Webserver = require('../lib/webserver').Webserver;
 
-var webserver = new Webserver( { 
+var webserver = new Webserver({
   name: 'hook.io-webserver',
   port: 9000,
   basicAuth: {
-    "username":"marak",
-    "password":"asdasd"
+    "username":"admin",
+    "password":"admin"
+  },
+  webroot: './public'
+});
+
+webserver.on('*::cakeRequest', function(options, callback){
+  if(options === "Cake please?"){
+    callback(null, 'nommnomnomnomn');
+  } else {
+    callback(null, 'NO CAKE FOR YOU');
   }
 });
 
-webserver.on('ready', function(){
-  console.log('http web server started on port: ' + webserver.options.port);
-});
 
 webserver.start();
+

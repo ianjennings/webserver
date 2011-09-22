@@ -3,9 +3,17 @@ var Webserver = require('../lib/webserver').Webserver;
 
 var webserver = new Webserver({
   name: 'hook.io-webserver',
-  port: 9000
+  port: 9000,
+  webroot: './public'
 });
 
+webserver.on('*::cakeRequest', function(options, callback){
+  if(options === "Cake please?"){
+    callback(null, 'nommnomnomnomn');
+  } else {
+    callback(null, 'NO CAKE FOR YOU');
+  }
+});
+
+
 webserver.start();
-
-
