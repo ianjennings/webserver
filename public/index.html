@@ -15,13 +15,13 @@
     Hook = new Hook();
     Hook.connect();
 
-    Hook.on('ready', function(){
+    Hook.once('browser::ready', function(){
 
       //
       // Remark: Use Hook.anAny to capture all Hook events for debugging
       //
       Hook.onAny(function(data){
-        console.log(data);
+        //console.log(data);
       });
 
       Hook.emit('hello', 'i am browser!');
