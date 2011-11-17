@@ -7,4 +7,20 @@ var webserver = new Webserver({
   webroot: './public'
 });
 
+
+
 webserver.start();
+
+webserver.on('ping', function (data, cb) {
+  var place = function () {
+    var places = [
+      "world",
+      "computer",
+      "hook.io"
+    ];
+
+    return places[Math.floor(places.length * Math.random())];
+  }
+
+  cb(null, place());
+})

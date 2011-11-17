@@ -14,11 +14,18 @@
 
     var channel = window.location.hash.substr(1);
 
-    hook.on('ready', function(){
+    // This seems to get hit twice.
+    hook.on('hook::ready', function() {
+
+      console.log("ready!");
 
       //
       // Hook is now ready, you can Hook.emit and Hook.on here
       //
+
+      hook.emit('ping', function (err, place) {
+        document.getElementById("place").innerHTML = place;
+      });
 
     });
     
@@ -29,7 +36,8 @@
   <body>
     <h1>Welcome to hook.io-webserver, it worked!</h1>
     <h2>You've now got a running websocket server waiting for connections!</h2>
-    hook.io-webserver is meant to be low-level and minimal. You probably want to check out <a href="http://github.com/hookio/hook.js/">hook.js</a>    
+    hook.io-webserver is meant to be low-level and minimal. You probably want to check out <a href="http://github.com/hookio/hook.js/">hook.js</a>
+    <h1>Hello <span id="place"></span>!</h1>
   </body>
 
 </html>
