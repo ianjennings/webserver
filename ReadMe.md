@@ -19,7 +19,13 @@ a basic hook.io enabled webserver with socket.io browser bridge
 
 hook.io-webserver creates an http server for browsers to connect to. Once connected, these browsers can send and receive messages to the server and each other with websocket support. But...that is boring. Anyone anyone can that. 
 
+     http://localhost:9000/socket.io/
+
 In addition to standard cross-browser websockets, hook.io-webserver itself extends the `Hook` prototype, which means it can easily connect to other hooks ( or have other hooks connect to it ) to seamlessly broadcast and re-broadcast messages. This means that you can now connect any browser to communicate with your hook.io cloud.
+
+# When to use?
+
+hook.io-webserver provides the bare minimal for opening up a socket.io websocket server that communicates with hook.io. If you are looking to build a real-time web application with hook.io, you should use the hook.js project.
 
 # Usage
 
