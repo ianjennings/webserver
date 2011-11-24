@@ -31,11 +31,19 @@ bundle.require(__dirname + '/../lib/browser/hook-shim.js', { target:"/hook.js"})
 
 //
 // Read in some comments specifically for the browser,
-// we'll append these to the browserified output
+// we'll prepend these to the browserified output
 //
 var comments = fs.readFileSync(__dirname + '/../lib/browser/comments.js').toString();
-comments = comments.replace(/{{newDate}}/, new Date());
-comments = comments.replace(/{{newDateUnix}}/, new Date().getTime());
+comments     = comments.replace(/{{newDate}}/, new Date());
+comments     = comments.replace(/{{newDateUnix}}/, new Date().getTime());
+
+//
+// Read in contructor block for browser
+// we'll append this to the browserified output
+//
+var constructor = fs.readFileSync(__dirname + '/../lib/browser/constructor.js').toString();
+
+
 
 //
 // TODO: Also create a minified bundle using:
@@ -46,7 +54,7 @@ comments = comments.replace(/{{newDateUnix}}/, new Date().getTime());
 // Output the browser version of hook.io, hook.js
 //
 
-fs.writeFileSync(__dirname + '/../public/hook.js', comments + bundle.bundle());
+fs.writeFileSync(__dirname + '/../public/hook.js', comments + bundle.bundle() + constructor);
 
 console.log('Generated: '.green + 'hook.js'.magenta);
 

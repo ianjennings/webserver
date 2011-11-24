@@ -8,3 +8,21 @@ var webserver = new Webserver({
 });
 
 webserver.start();
+
+webserver.on('ping', function (data, cb) {
+  var place = function () {
+
+    var item = places.shift();
+    places.push(item);
+
+    return item;
+  }
+
+  cb(null, place());
+})
+
+var places = [
+  "world",
+  "computer",
+  "hook.io"
+];

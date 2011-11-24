@@ -5,31 +5,17 @@
 
     <script type="text/javascript">
 
-    //
-    // TODO: Move this to hook-shim, will create magic Hook namespace
-    //
-    var Hook = require('/hook.js').Hook;
-    var hook = new Hook();
-    hook.connect();
-
-    var channel = window.location.hash.substr(1);
-
     // This seems to get hit twice.
     hook.on('hook::ready', function() {
 
-      console.log("ready!");
-
-      //
-      // Hook is now ready, you can Hook.emit and Hook.on here
-      //
-
-      hook.emit('ping', function (err, place) {
-        document.getElementById("place").innerHTML = place;
-      });
+      setInterval(function ping() {
+        hook.emit('ping', function (err, place) {
+          document.getElementById("place").innerHTML = 'hello ' + place + '!';
+        });
+      }, 2000);
 
     });
-    
-    
+
     </script>
   </head>
   
@@ -37,7 +23,7 @@
     <h1>Welcome to hook.io-webserver, it worked!</h1>
     <h2>You've now got a running websocket server waiting for connections!</h2>
     hook.io-webserver is meant to be low-level and minimal. You probably want to check out <a href="http://github.com/hookio/hook.js/">hook.js</a>
-    <h1>Hello <span id="place"></span>!</h1>
+    <h1><span id="place">loading...</span></h1>
   </body>
 
 </html>
