@@ -14,10 +14,6 @@ a basic hook.io enabled webserver with socket.io browser bridge
 
      npm install hook.io-webserver -g
 
-# Usage
-
-    hook.io-webserver
-
 # How does it work?
 
 hook.io-webserver creates an http server for browsers to connect to. Once connected, these browsers can send and receive messages to the server and each other with websocket support. But...that is boring. Anyone can do that. 
@@ -42,7 +38,7 @@ You'll also probably want to require the `/public/hook.js` file in
 
 ``` javascript
     
-var Webserver = require('../lib/webserver').Webserver;
+var Webserver = require('hook.io-webserver').Webserver;
 
 var webserver = new Webserver({
   name: 'hook.io-webserver',
