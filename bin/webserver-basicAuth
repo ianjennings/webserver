@@ -3,7 +3,6 @@ var Webserver = require('../lib/webserver').Webserver;
 
 var webserver = new Webserver({
   name: 'hook.io-webserver',
-  port: 9000,
   basicAuth: {
     "username":"admin",
     "password":"admin"
