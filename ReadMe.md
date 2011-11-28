@@ -47,4 +47,4 @@ var webserver = new Webserver({
 webserver.start();
 ```
 
-*Starts up a webserver which takes all incoming HTTP requests and emits the request headers and body to your hook.io network*2
+*Starts up a webserver which takes all incoming HTTP requests and emits the request headers and body to your hook.io network*
