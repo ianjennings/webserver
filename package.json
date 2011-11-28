@@ -2,7 +2,7 @@
   "author": "Marak Squires <marak.squires@gmail.com>",
   "name": "hook.io-webserver",
   "description": "basic hook.io enabled webserver with socket.io browser bridge",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/hookio/webserver.git"
