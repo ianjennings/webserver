@@ -19,7 +19,7 @@ a basic [hook.io](http://hook.io) enabled webserver with a [socket.io](http://so
 
 hook.io-webserver creates an http server for browsers to connect to. Once connected, these browsers can send and receive messages to the server and each other with websocket support. But...that is boring. Anyone can do that. 
 
-     http://localhost:9000/
+     http://localhost:8000/
 
 In addition to standard cross-browser websockets, `hookio-webserver` itself extends the `Hook` prototype, which means it can easily connect to other hooks ( or have other hooks connect to it ) to seamlessly broadcast and re-broadcast messages. This means that you can now connect any browser to communicate with your hook.io network.
 
@@ -41,7 +41,6 @@ var Webserver = require('hook.io-webserver').Webserver;
 
 var webserver = new Webserver({
   name: 'hook.io-webserver',
-  port: 9000,
   webroot: './public'
 });
 
