@@ -4,17 +4,26 @@
     <script type="text/javascript" src="./hook.js"></script>
 
     <script type="text/javascript">
-
+    
+    var Hook = require('/hook.js').Hook;
+    var hook = new Hook();
+    hook.connect();
     // This seems to get hit twice.
     hook.on('hook::ready', function() {
 
+      hook.onAny(function(){
+        document.getElementById("place").innerHTML += this.event + '<br />';
+      });
+
       setInterval(function ping() {
+        document.getElementById("ping").innerHTML += 'ping<br />';
         hook.emit('ping', function (err, place) {
-          document.getElementById("place").innerHTML = 'hello ' + place + '!';
+          document.getElementById("ping").innerHTML += 'pong<br />';
         });
-      }, 2000);
+      }, 1000);
 
     });
+
 
     </script>
   </head>
@@ -22,8 +31,19 @@
   <body>
     <h1>Welcome to hook.io-webserver, it worked!</h1>
     <h2>You've now got a running websocket server waiting for connections!</h2>
-    hook.io-webserver is meant to be low-level and minimal. You probably want to check out <a href="http://github.com/hookio/hook.js/">hook.js</a>
-    <h1><span id="place">loading...</span></h1>
+    <p>
+    hook.io-webserver is meant to be low-level and minimal. You probably want to check out <a href="http://github.com/hookio/hook.js/">hook.js</a>.
+    </p>
+    <p>
+      This page pings the sever with a callback (pong). The ping request is remitted to <strong>every</strong> client as webserver::ping. Callbacks will only be made by the client that emitted, while events will be emitted to every browser client.
+    </p>
+    <p>
+      Try opening another browser window. You will still see 1 "ping" and one "pong" on every browser client, but multiple "webserver::pings" because they are being broadcast to all browser clients.
+    </p>
+    <hr />
+    <div id="place" style="float: left; margin-right: 30px;"></div>
+    <div id="ping" style="float: left">
+    </div>
   </body>
 
 </html>

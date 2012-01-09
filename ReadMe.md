@@ -2,6 +2,27 @@
 
 a basic [hook.io](http://hook.io) enabled webserver with a [socket.io](http://socket.io)  based browser bridge
 
+# EXPERIMENTAL BROADCAST VERSION
+
+``` 
+git clone git@github.com:ianjennings/webserver.git
+cd webserver
+./bin/webserver
+```
+Then visit http://localhost:8000 in two browser tabs. The pings seen are coming from the server and should appear in both browser tabs at the same time.
+
+## Client Timeouts
+
+This solution keeps a reference to browser clients in the webserver hook. Since the client won't have the opportunity to emit a disconnection notice, we will disconnect the user if they haven't contacted the webserver within two minutes (by default). Clients that get disconnected get the event:
+```
+webserver::timeout
+```
+Remember, timeout is only relative to the last time a client emited an event. If a client first timesout and then emits an additional event, the client will continue to recieve messages and the tmieout will reset.
+
+## Events
+
+All events that are broadcast by the webserver hook are prepended with ```webserver::```. This makes it easy to distinguish from local events and broadcasted events.
+
 ## Features
 
   - Provides a cross-browser bridge to [hook.io](http://hook.io) through [socket.io](http://socket.io)

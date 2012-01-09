@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 //
 // A simple CLI tool for helping to browserify /browser/hook-shim.j
 //
