@@ -11,19 +11,26 @@
     // This seems to get hit twice.
     hook.on('hook::ready', function() {
 
-      hook.onAny(function(){
+      hook.onAny(function(err, data){
         document.getElementById("place").innerHTML += this.event + '<br />';
       });
 
       setInterval(function ping() {
         document.getElementById("ping").innerHTML += 'ping<br />';
-        hook.emit('ping', function (err, place) {
+        hook.emit('ping', function (err) {
           document.getElementById("ping").innerHTML += 'pong<br />';
         });
-      }, 1000);
+        document.getElementById("private").innerHTML += 'private ping<br />';
+        hook.emit('private::ping', function (err) {
+          document.getElementById("private").innerHTML += 'private pong<br />';
+        });
+      }, 3000);
+
+      hook.on("browser::*::ping", function(err, data){
+        console.log('catch all ping events');
+      });
 
     });
-
 
     </script>
   </head>
@@ -35,15 +42,15 @@
     hook.io-webserver is meant to be low-level and minimal. You probably want to check out <a href="http://github.com/hookio/hook.js/">hook.js</a>.
     </p>
     <p>
-      This page pings the sever with a callback (pong). The ping request is remitted to <strong>every</strong> client as webserver::ping. Callbacks will only be made by the client that emitted, while events will be emitted to every browser client.
+      This page pings the sever with a callback (pong). The ping request is remitted to <strong>every</strong> client as webserver::ping.
     </p>
     <p>
       Try opening another browser window. You will still see 1 "ping" and one "pong" on every browser client, but multiple "webserver::pings" because they are being broadcast to all browser clients.
     </p>
     <hr />
     <div id="place" style="float: left; margin-right: 30px;"></div>
-    <div id="ping" style="float: left">
-    </div>
+    <div id="ping" style="float: left; margin-right: 30px;"></div>
+    <div id="private" style="float: left; margin-right: 30px;"></div>
   </body>
 
 </html>

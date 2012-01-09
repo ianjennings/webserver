@@ -8,6 +8,10 @@ var webserver = new Webserver({
 
 webserver.start();
 
-webserver.on('ping', function (data, cb) {
+webserver.on('*::ping', function (data, cb) {
   cb(null, null);
-})
+});
+
+webserver.on('*::private::ping', function(data, cb) {
+  cb(null, null);
+});
